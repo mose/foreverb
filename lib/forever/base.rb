@@ -5,7 +5,7 @@ module Forever
   class Base
     attr_reader :started_at
 
-    def initialize(options={}, parans={}, &block)
+    def initialize(options={}, params={}, &block)
       @options = options
       @params = params
       forking = options.delete(:fork)
