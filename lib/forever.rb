@@ -15,6 +15,6 @@ module Forever
     caller_file = caller(1).map { |line| line.split(/:(?=\d|in )/)[0,1] }.flatten.first
     options[:file] ||= File.expand_path(caller_file)
     options[:dir]  ||= File.expand_path('../../', options[:file]) # => we presume we are calling it from a bin|script dir
-    Base.new(options, params={}, &block)
+    Base.new(options, params, &block)
   end # run
 end # Forever
