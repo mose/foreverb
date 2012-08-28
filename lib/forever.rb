@@ -11,10 +11,10 @@ Dir.mkdir(path) unless File.exist?(path)
 module Forever
   extend self
 
-  def run(options={}, &block)
+  def run(options={}, params={}, &block)
     caller_file = caller(1).map { |line| line.split(/:(?=\d|in )/)[0,1] }.flatten.first
     options[:file] ||= File.expand_path(caller_file)
     options[:dir]  ||= File.expand_path('../../', options[:file]) # => we presume we are calling it from a bin|script dir
-    Base.new(options, &block)
+    Base.new(options, params={}, &block)
   end # run
 end # Forever

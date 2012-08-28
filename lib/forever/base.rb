@@ -5,8 +5,9 @@ module Forever
   class Base
     attr_reader :started_at
 
-    def initialize(options={}, &block)
+    def initialize(options={}, parans={}, &block)
       @options = options
+      @params = params
       forking = options.delete(:fork)
 
       # Run others methods
@@ -351,7 +352,7 @@ module Forever
         yield
       end
     end
-    
+
     def write_config!
       config_was = File.exist?(FOREVER_PATH) ? YAML.load_file(FOREVER_PATH) : []
       config_was.delete_if { |conf| conf.nil? || conf.empty? || conf[:file] == file }
